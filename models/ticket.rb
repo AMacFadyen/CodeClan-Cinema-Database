@@ -41,12 +41,19 @@ class Ticket
         values = [@customer_id, @film_id, @id]
         SqlRunner.run(sql, values)
     end
-
-    def bought()
-        sql = "SELECT * FROM tickets WHERE customer_id = $1"
-        values = [@customer_id]
-        tickets =  SqlRunner.run(sql, values)
-        return tickets.map{|ticket|Ticket.new(ticket)}.count()
-    end
+    #
+    # def customer_bought_count()
+    #     sql = "SELECT * FROM tickets WHERE customer_id = $1"
+    #     values = [@customer_id]
+    #     tickets =  SqlRunner.run(sql, values)
+    #     return tickets.map{|ticket|Ticket.new(ticket)}.count()
+    # end
+    #
+    # def film_bought_count()
+    #     sql = "SELECT * FROM tickets WHERE film_id = $1"
+    #     values = [@film_id]
+    #     tickets =  SqlRunner.run(sql, values)
+    #     return tickets.map{|ticket|Ticket.new(ticket)}.count()
+    # end
 
 end

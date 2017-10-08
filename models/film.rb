@@ -1,3 +1,5 @@
+require_relative('../db/sql_runner.rb')
+require_relative('./customer.rb')
 class Film
 
     attr_accessor :title, :price
@@ -40,4 +42,11 @@ class Film
         SqlRunner.run(sql, values)
     end
 
+    def viewers()
+        sql = "SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE film_id = $1;"
+        values = [@id]
+        viewers = SqlRunner.run(sql, values)
+        return viewers.map{|viewer|Customer.new(viewer)}
+    end
+    
 end
